@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "G": "minecraft:glass_pane",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    "IGI",
+    "IRI",
+    "III"
+  ],
+  "result": {
+    "id": "redscope:oscilloscope"
+  }
+}
