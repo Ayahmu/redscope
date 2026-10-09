@@ -1,0 +1,22 @@
+{
+	"schemaVersion": 1,
+	"id": "redscope",
+	"version": "${version}",
+	"name": "Red Scope",
+	"description": "A redstone oscilloscope: watch the signal strength of a circuit as a waveform.",
+	"authors": [],
+	"license": "CC0-1.0",
+	"icon": "assets/redscope/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.redscope.RedScope"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
