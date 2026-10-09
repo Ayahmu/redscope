@@ -106,10 +106,16 @@ redstone power -> OscilloscopeBlock -> BlockEntity.tick (server) -> SampleBuffer
 - Manual acceptance in `runClient`: a lever, a repeater chain and a clock circuit with a known
   period; the cursor readout must match the known period.
 
-## Open items for the implementation plan
+## Resolved while writing the implementation plan
 
-- Required JDK for 26.3 is not stated in the Fabric announcement; confirm from the Fabric
-  template. The local JDK is 17.
-- Fabric API version for 26.3 to be taken from the template generator.
-- Screen handler and payload class names to be checked against the 26.3 unobfuscated names,
-  since several Fabric APIs were removed or reshaped in 26.3.
+- Toolchain for 26.3, taken from the official Fabric template (branch `26.3`): Java 25, Loom
+  `1.18-SNAPSHOT`, Gradle 9.7.1, Fabric Loader 0.19.5, Fabric API `0.161.0+26.3`. The Fabric
+  announcement post quoted Loom 1.17 and Gradle 9.6.0; the template is newer and is used.
+- Menu API: `fabric-menu-api-v1` (`ExtendedMenuType`, `ExtendedMenuProvider`) replaces the old
+  screen-handler API. Networking uses `PayloadTypeRegistry` and `ServerPlayNetworking` /
+  `ClientPlayNetworking`. Rendering uses `GuiGraphicsExtractor`.
+- One addition to the pure-logic set: `SampleReceiver` holds the client-side gap detection and
+  resync state so it can be unit-tested; the menu is a thin wrapper around it.
+- The screen must not pause the game (`isPauseScreen()` returns false), otherwise single-player
+  stops ticking and the block stops sampling.
+- Implementation plan: `docs/superpowers/plans/2026-10-09-redstone-oscilloscope.md`.
