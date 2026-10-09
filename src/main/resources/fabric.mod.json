@@ -11,6 +11,9 @@
 	"entrypoints": {
 		"main": [
 			"dev.redscope.RedScope"
+		],
+		"client": [
+			"dev.redscope.client.RedScopeClient"
 		]
 	},
 	"depends": {
