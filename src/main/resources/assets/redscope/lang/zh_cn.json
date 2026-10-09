@@ -1,3 +1,14 @@
 {
-  "block.redscope.oscilloscope": "红石示波器"
+  "block.redscope.oscilloscope": "红石示波器",
+  "screen.redscope.pause": "暂停",
+  "screen.redscope.run": "运行",
+  "screen.redscope.window": "时基",
+  "screen.redscope.window_value": "%s 刻",
+  "screen.redscope.trigger": "触发",
+  "screen.redscope.edge.off": "关闭",
+  "screen.redscope.edge.rising": "上升沿",
+  "screen.redscope.edge.falling": "下降沿",
+  "screen.redscope.level": "电平 %s",
+  "screen.redscope.no_trigger": "未触发",
+  "screen.redscope.readout": "Δ %s 游戏刻 = %s 红石刻 = %s 秒 ≈ %s Hz"
 }

@@ -1,3 +1,14 @@
 {
-  "block.redscope.oscilloscope": "Redstone Oscilloscope"
+  "block.redscope.oscilloscope": "Redstone Oscilloscope",
+  "screen.redscope.pause": "Pause",
+  "screen.redscope.run": "Run",
+  "screen.redscope.window": "Time",
+  "screen.redscope.window_value": "%s ticks",
+  "screen.redscope.trigger": "Trigger",
+  "screen.redscope.edge.off": "Off",
+  "screen.redscope.edge.rising": "Rising",
+  "screen.redscope.edge.falling": "Falling",
+  "screen.redscope.level": "Lv %s",
+  "screen.redscope.no_trigger": "NO TRIGGER",
+  "screen.redscope.readout": "Δ %s ticks = %s redstone ticks = %s s = %s Hz"
 }
