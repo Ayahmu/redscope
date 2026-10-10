@@ -1,0 +1,49 @@
+# Publish a GitHub Release with the playable jar when a version tag is pushed:
+#
+#   git tag v1.0.0 && git push origin v1.0.0
+#
+# The tag must match `version` in gradle.properties, otherwise the jar name and the
+# release would disagree. For a pre-release set version=1.0.0-rc1 and tag v1.0.0-rc1:
+# tags containing a hyphen are marked as pre-releases.
+
+name: release
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v6
+      - name: validate gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+      - name: setup jdk
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'microsoft'
+      - name: make gradle wrapper executable
+        run: chmod +x ./gradlew
+      - name: check that the tag matches the mod version
+        run: |
+          version=$(sed -n 's/^version=//p' gradle.properties)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match version=$version in gradle.properties" >&2
+            exit 1
+          fi
+      - name: build and test
+        run: ./gradlew build
+      - name: create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^version=//p' gradle.properties)
+          flags=""
+          case "$GITHUB_REF_NAME" in *-*) flags="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" "build/libs/redscope-$version.jar" \
+            --title "Red Scope $version" --generate-notes $flags
